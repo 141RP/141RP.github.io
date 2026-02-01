@@ -340,20 +340,27 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     function animateCursor() {
-        cursorX += (mouseX - cursorX) * 0.12;
-        cursorY += (mouseY - cursorY) * 0.12;
-        dotX += (mouseX - dotX) * 0.3;
-        dotY += (mouseY - dotY) * 0.3;
+    // Smooth interpolation for cursor position
+    cursorX += (mouseX - cursorX) * 0.12;
+    cursorY += (mouseY - cursorY) * 0.12;
+    dotX += (mouseX - dotX) * 0.3;
+    dotY += (mouseY - dotY) * 0.3;
 
-        if (cursorRing) {
-            cursorRing.style.transform = `translate(${cursorX - 20}px, ${cursorY - 20}px)`;
-        }
-        if (cursorDot) {
-            cursorDot.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
-        }
-
-        requestAnimationFrame(animateCursor);
+    if (cursorRing) {
+        // Center the 40px ring (20px radius) on the cursor position
+        cursorRing.style.left = cursorX + 'px';
+        cursorRing.style.top = cursorY + 'px';
+        cursorRing.style.transform = 'translate(-50%, -50%)';
     }
+    if (cursorDot) {
+        // Center the 8px dot (4px radius) on the cursor position
+        cursorDot.style.left = dotX + 'px';
+        cursorDot.style.top = dotY + 'px';
+        cursorDot.style.transform = 'translate(-50%, -50%)';
+    }
+
+    requestAnimationFrame(animateCursor);
+}
     animateCursor();
 
     // Theme detection

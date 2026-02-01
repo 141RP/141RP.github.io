@@ -27,7 +27,7 @@ body {
 
 /* ===== Custom Cursor ===== */
 .cursor-ring {
-    position: fixed;
+    position: fixed;  /* MUST be 'fixed' */
     width: 40px;
     height: 40px;
     border: 2px solid rgba(255, 255, 255, 0.6);
@@ -39,7 +39,7 @@ body {
 }
 
 .cursor-dot {
-    position: fixed;
+    position: fixed;  /* MUST be 'fixed' */
     width: 8px;
     height: 8px;
     background: #fff;
@@ -112,9 +112,9 @@ button:hover ~ .cursor-ring {
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif
     font-size: clamp(3rem, 12vw, 9rem);
-    font-weight: 700;
+    font-weight: 800;
     line-height: 0.95;
     margin-bottom: 1.5rem;
     letter-spacing: -0.03em;
@@ -143,6 +143,7 @@ button:hover ~ .cursor-ring {
     animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.6s;
     opacity: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* ===== CTA Button ===== */
