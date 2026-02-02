@@ -27,8 +27,9 @@ body {
 
 /* ===== Custom Cursor ===== */
 .cursor-ring {
-    display: none;
-    position: fixed;  /* MUST be 'fixed' */
+    display: block;
+    position: fixed;
+    /* MUST be 'fixed' */
     width: 40px;
     height: 40px;
     border: 2px solid rgba(255, 255, 255, 0.6);
@@ -40,8 +41,9 @@ body {
 }
 
 .cursor-dot {
-    display: none;
-    position: fixed;  /* MUST be 'fixed' */
+    display: block;
+    position: fixed;
+    /* MUST be 'fixed' */
     width: 8px;
     height: 8px;
     background: #fff;
@@ -60,8 +62,8 @@ body.light-mode .cursor-dot {
 }
 
 /* Cursor hover effects */
-a:hover ~ .cursor-ring,
-button:hover ~ .cursor-ring {
+a:hover~.cursor-ring,
+button:hover~.cursor-ring {
     transform: scale(1.5);
     border-width: 1px;
 }
@@ -107,6 +109,7 @@ button:hover ~ .cursor-ring {
         opacity: 1;
         transform: translateY(0);
     }
+
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -114,7 +117,7 @@ button:hover ~ .cursor-ring {
 }
 
 .hero-title {
-    font-family: 'Montserrat', sans-serif
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(3rem, 12vw, 9rem);
     font-weight: 800;
     line-height: 0.95;
