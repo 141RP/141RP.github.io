@@ -61,10 +61,9 @@ body.light-mode .cursor-dot {
     background: #0a0e27;
 }
 
-/* Cursor hover effects */
-a:hover~.cursor-ring,
-button:hover~.cursor-ring {
-    transform: scale(1.5);
+/* Cursor hover effects — driven by JS mouseenter/mouseleave */
+.cursor-ring.hovering {
+    transform: scale(1.5) translate(-50%, -50%);
     border-width: 1px;
 }
 
@@ -214,7 +213,7 @@ button:hover~.cursor-ring {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     color: var(--dark-text);
-    cursor: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
