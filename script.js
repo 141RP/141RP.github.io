@@ -284,15 +284,20 @@ class App {
         });
 
         c.addEventListener("touchmove", (e) => {
+            e.preventDefault();
             const rect = c.getBoundingClientRect();
             onMove(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
-        });
+        }, { passive: false });
 
+        let resizeTimer;
         window.addEventListener("resize", () => {
-            this.camera.aspect = c.clientWidth / c.clientHeight;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(c.clientWidth, c.clientHeight);
-            this.gradientBackground.onResize(c.clientWidth, c.clientHeight);
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                this.camera.aspect = c.clientWidth / c.clientHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(c.clientWidth, c.clientHeight);
+                this.gradientBackground.onResize(c.clientWidth, c.clientHeight);
+            }, 150);
         });
 
         this.tick();
@@ -434,6 +439,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
 
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing?.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursorRing?.classList.remove('hovering'));
+    });
+
     // Theme detection
     function checkTheme() {
         const html = document.documentElement;
@@ -477,6 +487,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 app.setPaused(!isPlaying);
             }
             pauseBtn.classList.toggle('paused', !isPlaying);
+            pauseBtn.setAttribute('aria-label', isPlaying ? 'Pause animation' : 'Play animation');
         });
     }
 
